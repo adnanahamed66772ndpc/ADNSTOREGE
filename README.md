@@ -3,6 +3,7 @@
 Web file storage using Cloudflare R2 (S3 API), D1, and Pages. Multiple buckets (including different accounts), file-system UI, chunked uploads (5 MB+), file preview, and full web-based configuration.
 
 **Setup guides:** See the [**docs/**](docs/) folder for step-by-step instructions:
+- [How to deploy (Workers & Pages)](docs/how-to-deploy.md) – deploy via dashboard (Git) or Wrangler CLI
 - [How to set up D1 database](docs/how-to-setup-d1.md) – create D1, find database ID, bind to app
 - [How to set up bucket and keys](docs/how-to-setup-bucket-and-keys.md) – create R2 bucket, find endpoint, access key, secret key  
 - **বাংলা:** [docs/bangla/](docs/bangla/) – D1 ও বাকেট/কী সেটআপ (বাংলায়)
@@ -91,7 +92,14 @@ The app expects the binding name **`DB`**. Don’t change it unless you also cha
    - Local DB: `npm run db:migrate:local`
    - Remote DB: `npm run db:migrate`
 
-## Deploy (Cloudflare Pages)
+## Deploy (Cloudflare Workers & Pages)
+
+**Full steps:** [docs/how-to-deploy.md](docs/how-to-deploy.md)
+
+- **From dashboard (recommended):** Workers & Pages → Create → Pages → Connect to Git (e.g. `adnanahamed66772ndpc/ADNSTOREGE`). Build: `npm run build`, output: `dist`. Then add D1 binding **`DB`** in Settings → Functions.
+- **From CLI:** Run `npx wrangler login` in a terminal, then `npm run pages:deploy`. Set `database_id` in `wrangler.toml` or bind D1 in the dashboard.
+
+*(Original steps below.)*
 
 1. Connect the repo to Cloudflare Pages:
    - Build command: `npm run build`
